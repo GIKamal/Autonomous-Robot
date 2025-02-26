@@ -21,6 +21,10 @@
             <box>
               <size>4 0.1 0.6</size> <!-- Length, Width, Height -->
             </box>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 70</size>
+            </plane>
           </geometry>
         </collision>
         <visual name="visual">
@@ -28,6 +32,10 @@
             <box>
               <size>4 0.1 0.6</size> <!-- Length, Width, Height -->
             </box>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 70</size>
+            </plane>
           </geometry>
           <material>
             <ambient>0.8 0.8 0.8 1</ambient>
@@ -45,6 +53,7 @@
           <geometry>
             <box>
               <size>4 0.1 0.6</size> <!-- Length, Width, Height -->
+              <size>30 5 5</size>
             </box>
           </geometry>
         </collision>
@@ -52,6 +61,7 @@
           <geometry>
             <box>
               <size>4 0.1 0.6</size> <!-- Length, Width, Height -->
+              <size>30 5 5</size>
             </box>
           </geometry>
           <material>
@@ -138,5 +148,8 @@
         <pose>0.8 0.6 0.3 0 0 0</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
       </link>
     </model>
+      <pose>35 0 2.5 0 0 0</pose>
+    </model>
+    
   </world>
 </sdf>
