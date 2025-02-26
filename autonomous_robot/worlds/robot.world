@@ -1,7 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.6">
   <world name="hospital_world">
-  <world name="hospital_world">
     <!-- Ground Plane -->
     <include>
       <uri>model://ground_plane</uri>
@@ -65,93 +64,6 @@
     </model>
 
     <model name="wall_back">
-    <include>
-      <uri>model://ground_plane</uri>
-    </include>
-
-    <!-- Sunlight -->
-    <include>
-      <uri>model://sun</uri>
-    </include>
-
-    <!-- Hospital Walls -->
-    <!-- Main Corridor Walls -->
-    <model name="wall_left">
-      <static>true</static>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>2.4 0.1 0.6</size> <!-- Length, Width, Height -->
-            </box>
-            <box>
-              <size>4 0.1 0.6</size> <!-- Length, Width, Height -->
-            </box>
-            <plane>
-              <normal>0 0 1</normal>
-              <size>100 70</size>
-            </plane>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>2.4 0.1 0.6</size> <!-- Length, Width, Height -->
-            </box>
-            <box>
-              <size>4 0.1 0.6</size> <!-- Length, Width, Height -->
-            </box>
-            <plane>
-              <normal>0 0 1</normal>
-              <size>100 70</size>
-            </plane>
-          </geometry>
-          <material>
-            <ambient>0.8 0.8 0.8 1</ambient>
-            <diffuse>0.8 0.8 0.8 1</diffuse>
-            <ambient>0.8 0.8 0.8 1</ambient>
-            <diffuse>0.8 0.8 0.8 1</diffuse>
-          </material>
-        </visual>
-        <pose>-0.7 0.55 0.3 0 0 1.5708</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
-        <pose>1.3 1.7 0.3 0 0 0</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
-      </link>
-    </model>
-
-    <model name="wall_front">
-
-    <model name="wall_right">
-      <static>true</static>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>2.4 0.1 0.6</size> <!-- Length, Width, Height -->
-              <size>4 0.1 0.6</size> <!-- Length, Width, Height -->
-              <size>30 5 5</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>2.4 0.1 0.6</size> <!-- Length, Width, Height -->
-              <size>4 0.1 0.6</size> <!-- Length, Width, Height -->
-              <size>30 5 5</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.8 0.8 0.8 1</ambient>
-            <diffuse>0.8 0.8 0.8 1</diffuse>
-            <ambient>0.8 0.8 0.8 1</ambient>
-            <diffuse>0.8 0.8 0.8 1</diffuse>
-          </material>
-        </visual>
-        <pose>1.3 -0.6 0.3 0 0 0</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
-      </link>
-    </model>
-
-    <model name="wall_back">
       <static>true</static>
       <link name="link">
         <collision name="collision">
@@ -199,35 +111,6 @@
         </visual>
         <pose>3.3 0.55 0.3 0 0 1.5708</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
       </link>
-    </model>
-
-    <!-- Room Partitions -->
-    <model name="partition_1">
-      <static>true</static>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>3 0.1 0.6</size> <!-- Length, Width, Height -->
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>3 0.1 0.6</size> <!-- Length, Width, Height -->
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.6 0.6 0.6 1</ambient>
-            <diffuse>0.6 0.6 0.6 1</diffuse>
-          </material>
-        </visual>
-        <pose>3.3 0.55 0.3 0 0 1.5708</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
-        <pose>0.8 0.6 0.3 0 0 0</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
-      </link>
-    </model>
-      <pose>35 0 2.5 0 0 0</pose>
     </model>
 
     <!-- Room Partitions -->
