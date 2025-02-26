@@ -9,12 +9,12 @@
   <!-- Main Body -->
   <link name="base_link">
     <inertial>
-      <origin xyz="0 0 0.2" rpy="0 0 0"/>
+      <origin xyz="0 0 0.231" rpy="0 0 0"/>
       <mass value="0.9"/>
       <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
     </inertial>
     <visual>
-      <origin xyz="0 0 0.2" rpy="0 0 0"/>
+      <origin xyz="0 0 0.231" rpy="0 0 0"/>
       <geometry>
         <box size="0.32 0.30 0.40"/>
       </geometry>
@@ -23,7 +23,7 @@
       </material>
     </visual>
     <collision>
-      <origin xyz="0 0 0.2" rpy="0 0 0"/>
+      <origin xyz="0 0 0.231" rpy="0 0 0"/>
       <geometry>
         <box size="0.32 0.30 0.40"/>
       </geometry>
@@ -134,28 +134,28 @@
   <joint name="wheel_1_joint" type="continuous">
     <parent link="base_link"/>
     <child link="wheel_1"/>
-    <origin xyz="0.099 0.16 0" rpy="0 0 0"/>
+    <origin xyz="0.099 0.16 0.031" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
   </joint>
 
   <joint name="wheel_2_joint" type="continuous">
     <parent link="base_link"/>
     <child link="wheel_2"/>
-    <origin xyz="0.099 -0.16 0" rpy="0 0 0"/>
+    <origin xyz="0.099 -0.16 0.031" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
   </joint>
 
   <joint name="wheel_3_joint" type="continuous">
     <parent link="base_link"/>
     <child link="wheel_3"/>
-    <origin xyz="-0.099 0.16 0" rpy="0 0 0"/>
+    <origin xyz="-0.099 0.16 0.031" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
   </joint>
 
   <joint name="wheel_4_joint" type="continuous">
     <parent link="base_link"/>
     <child link="wheel_4"/>
-    <origin xyz="-0.099 -0.16 0" rpy="0 0 0"/>
+    <origin xyz="-0.099 -0.16 0.031" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
   </joint>
 
@@ -187,7 +187,7 @@
   <joint name="lidar_box_joint" type="fixed">
     <parent link="base_link"/>
     <child link="lidar_box_link"/>
-    <origin xyz="-0.1 0 0.4" rpy="0 0 0"/> <!-- Positioned above the base_link -->
+    <origin xyz="-0.1 0 0.431" rpy="0 0 0"/> <!-- Positioned above the base_link -->
   </joint>
 
   <!-- LiDAR -->
@@ -218,7 +218,7 @@
   <joint name="lidar_joint" type="fixed">
     <parent link="lidar_box_link"/>
     <child link="lidar_link"/>
-    <origin xyz="0 0 0.05" rpy="0 0 0"/> <!-- Centered inside the box -->
+    <origin xyz="0 0 0.07" rpy="0 0 0"/> <!-- Centered inside the box -->
   </joint>
 
   <!-- Locking Mechanism -->
@@ -248,7 +248,7 @@
   <joint name="lock_joint" type="fixed">
     <parent link="base_link"/>
     <child link="lock_link"/>
-    <origin xyz="0.15 0.12 0.25" rpy="0 0 0"/>
+    <origin xyz="0.15 0.12 0.281" rpy="0 0 0"/>
   </joint>
 
   <!-- Dummy Link -->
@@ -279,7 +279,7 @@
   <joint name="dummy_joint" type="fixed">
     <parent link="base_link"/>
     <child link="dummy_link"/>
-    <origin xyz="0.0 0.0 0.25" rpy="0 0 0"/>
+    <origin xyz="0.0 0.0 0.281" rpy="0 0 0"/>
   </joint>
 
   <!-- Gazebo Plugins -->
@@ -291,7 +291,7 @@
       <rightJoint>wheel_2_joint</rightJoint>
       <wheelSeparation>0.3</wheelSeparation>
       <wheelDiameter>0.062</wheelDiameter>
-      <torque>1</torque>
+      <torque>2</torque>
       <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
@@ -300,8 +300,8 @@
       <publishWheelTF>false</publishWheelTF>
       <publishOdomTF>true</publishOdomTF>
       <publishWheelJointState>false</publishWheelJointState>
-      <wheelAcceleration>0.01</wheelAcceleration>
-      <wheelTorque>1</wheelTorque>
+      <wheelAcceleration>0.5</wheelAcceleration>
+      <wheelTorque>2</wheelTorque>
       <odometrySource>1</odometrySource>
       <publishTf>1</publishTf>
     </plugin>

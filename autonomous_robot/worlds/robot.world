@@ -19,14 +19,14 @@
         <collision name="collision">
           <geometry>
             <box>
-              <size>10 0.2 2</size> <!-- Length, Width, Height -->
+              <size>4 0.1 0.6</size> <!-- Length, Width, Height -->
             </box>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
             <box>
-              <size>10 0.2 2</size> <!-- Length, Width, Height -->
+              <size>4 0.1 0.6</size> <!-- Length, Width, Height -->
             </box>
           </geometry>
           <material>
@@ -34,7 +34,7 @@
             <diffuse>0.8 0.8 0.8 1</diffuse>
           </material>
         </visual>
-        <pose>0 4 1 0 0 0</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
+        <pose>1.3 1.7 0.3 0 0 0</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
       </link>
     </model>
 
@@ -44,14 +44,14 @@
         <collision name="collision">
           <geometry>
             <box>
-              <size>10 0.2 2</size> <!-- Length, Width, Height -->
+              <size>4 0.1 0.6</size> <!-- Length, Width, Height -->
             </box>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
             <box>
-              <size>10 0.2 2</size> <!-- Length, Width, Height -->
+              <size>4 0.1 0.6</size> <!-- Length, Width, Height -->
             </box>
           </geometry>
           <material>
@@ -59,7 +59,57 @@
             <diffuse>0.8 0.8 0.8 1</diffuse>
           </material>
         </visual>
-        <pose>0 -4 1 0 0 0</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
+        <pose>1.3 -0.6 0.3 0 0 0</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
+      </link>
+    </model>
+
+    <model name="wall_back">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.4 0.1 0.6</size> <!-- Length, Width, Height -->
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.4 0.1 0.6</size> <!-- Length, Width, Height -->
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+        <pose>-0.7 0.55 0.3 0 0 1.5708</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
+      </link>
+    </model>
+
+    <model name="wall_front">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.4 0.1 0.6</size> <!-- Length, Width, Height -->
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.4 0.1 0.6</size> <!-- Length, Width, Height -->
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+        <pose>3.3 0.55 0.3 0 0 1.5708</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
       </link>
     </model>
 
@@ -70,14 +120,14 @@
         <collision name="collision">
           <geometry>
             <box>
-              <size>0.2 3 2</size> <!-- Length, Width, Height -->
+              <size>3 0.1 0.6</size> <!-- Length, Width, Height -->
             </box>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
             <box>
-              <size>0.2 3 2</size> <!-- Length, Width, Height -->
+              <size>3 0.1 0.6</size> <!-- Length, Width, Height -->
             </box>
           </geometry>
           <material>
@@ -85,163 +135,7 @@
             <diffuse>0.6 0.6 0.6 1</diffuse>
           </material>
         </visual>
-        <pose>3 0 1 0 0 0</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
-      </link>
-    </model>
-
-    <!-- Hospital Beds -->
-    <model name="bed_1">
-      <static>true</static>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>2 1 0.5</size> <!-- Length, Width, Height -->
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>2 1 0.5</size> <!-- Length, Width, Height -->
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.5 0.5 0.5 1</ambient>
-            <diffuse>0.5 0.5 0.5 1</diffuse>
-          </material>
-        </visual>
-        <pose>2 2 0.25 0 0 0</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
-      </link>
-    </model>
-
-    <model name="bed_2">
-      <static>true</static>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>2 1 0.5</size> <!-- Length, Width, Height -->
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>2 1 0.5</size> <!-- Length, Width, Height -->
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.5 0.5 0.5 1</ambient>
-            <diffuse>0.5 0.5 0.5 1</diffuse>
-          </material>
-        </visual>
-        <pose>2 -2 0.25 0 0 0</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
-      </link>
-    </model>
-
-    <!-- Medical Equipment -->
-    <model name="equipment_1">
-      <static>true</static>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>1</length>
-            </cylinder>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <cylinder>
-              <radius>0.3</radius>
-              <length>1</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <ambient>0.2 0.2 0.8 1</ambient>
-            <diffuse>0.2 0.2 0.8 1</diffuse>
-          </material>
-        </visual>
-        <pose>4 1 0.5 0 0 0</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
-      </link>
-    </model>
-
-    <!-- Reception Desk -->
-    <model name="reception_desk">
-      <static>true</static>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>2 0.5 1</size> <!-- Length, Width, Height -->
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>2 0.5 1</size> <!-- Length, Width, Height -->
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.7 0.5 0.3 1</ambient>
-            <diffuse>0.7 0.5 0.3 1</diffuse>
-          </material>
-        </visual>
-        <pose>-4 0 0.5 0 0 0</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
-      </link>
-    </model>
-
-    <!-- Chairs -->
-    <model name="chair_1">
-      <static>true</static>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>0.5 0.5 1</size> <!-- Length, Width, Height -->
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>0.5 0.5 1</size> <!-- Length, Width, Height -->
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.4 0.2 0.1 1</ambient>
-            <diffuse>0.4 0.2 0.1 1</diffuse>
-          </material>
-        </visual>
-        <pose>-3 1 0.5 0 0 0</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
-      </link>
-    </model>
-
-    <model name="chair_2">
-      <static>true</static>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>0.5 0.5 1</size> <!-- Length, Width, Height -->
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>0.5 0.5 1</size> <!-- Length, Width, Height -->
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.4 0.2 0.1 1</ambient>
-            <diffuse>0.4 0.2 0.1 1</diffuse>
-          </material>
-        </visual>
-        <pose>-3 -1 0.5 0 0 0</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
+        <pose>0.8 0.6 0.3 0 0 0</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
       </link>
     </model>
   </world>
