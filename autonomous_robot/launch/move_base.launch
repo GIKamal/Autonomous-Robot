@@ -1,0 +1,17 @@
+<launch>
+  <node pkg="move_base" type="move_base" name="move_base" output="screen">
+    <!-- Load global costmap parameters -->
+    <rosparam file="$(find autonomous_robot)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find autonomous_robot)/config/global_costmap_params.yaml" command="load" />
+
+    <!-- Load local costmap parameters -->
+    <rosparam file="$(find autonomous_robot)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find autonomous_robot)/config/local_costmap_params.yaml" command="load" />
+
+    <!-- Load local planner parameters -->
+    <rosparam file="$(find autonomous_robot)/config/local_planner_params.yaml" command="load" />
+
+    <!-- Load global planner parameters -->
+    <rosparam file="$(find autonomous_robot)/config/global_planner_params.yaml" command="load" />
+  </node>
+</launch>
