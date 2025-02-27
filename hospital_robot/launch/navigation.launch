@@ -1,5 +1,0 @@
-<launch>
-    <node pkg="move_base" type="move_base" name="move_base" output="screen">
-        <rosparam file="$(find hospital_robot)/config/params/move_base_params.yaml" command="load"/>
-    </node>
-</launch>
