@@ -1,6 +1,0 @@
-<launch>
-    <!-- Hospital Task Node -->
-    <node name="hospital_task_node" pkg="hospital_robot" type="hospital_task_node.py" output="screen">
-        <param name="task_name" value="Deliver medication to Room 101"/>
-    </node>
-</launch>

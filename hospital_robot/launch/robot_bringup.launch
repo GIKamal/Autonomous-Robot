@@ -1,5 +1,0 @@
-<launch>
-    <include file="$(find hospital_robot)/launch/slam_mapping.launch"/>
-    <include file="$(find hospital_robot)/launch/navigation.launch"/>
-    <node name="hospital_task_node" pkg="hospital_robot" type="hospital_task_node.py" output="screen"/>
-</launch>
