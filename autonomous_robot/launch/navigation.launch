@@ -1,4 +1,7 @@
 <launch>
+  <!-- RPLiDAR -->
+  <include file="$(find autonomous_robot)/launch/rplidar.launch"/>
+
   <!-- Load URDF into the ROS Parameter Server -->
   <param name="robot_description" command="$(find xacro)/xacro '$(find autonomous_robot)/urdf/robot.urdf'" />
 
@@ -37,7 +40,7 @@
   </node>
 
   <!-- Map Server -->
-  <node pkg="map_server" type="map_server" name="map_server" args="$(find autonomous_robot)/maps/hospital_map.yaml" />
+  <node pkg="map_server" type="map_server" name="map_server" args="$(find autonomous_robot)/maps/map.yaml" />
 
   <!-- Move Base -->
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
@@ -49,4 +52,13 @@
     <param name="base_global_planner" value="navfn/NavfnROS"/>
     <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
   </node>
+
+  <!-- Launch teleop_twist_keyboard -->
+  <node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen" />  
+
+  <!-- Static transform from base_link to laser -->
+  <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.1 0 0.2 0 0 0 base_link laser 100" />
+
+  <!-- motor control -->
+  <node name="motor_control_node" pkg="motor_control" type="motor_controller.py" output="screen"/>
 </launch>
