@@ -1,0 +1,4 @@
+<launch>
+    <node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
+    <node name="scripts" pkg="autonomous_robot" type="control_single.py" output="screen"/>
+</launch>
