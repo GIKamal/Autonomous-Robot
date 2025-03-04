@@ -10,7 +10,7 @@ GPIO.setwarnings(False)
 # Motor 1 (L298N 1)
 IN1 = 17
 IN2 = 27
-ENA = 19
+ENA = 13
 
 # Motor 2 (L298N 1)
 IN3 = 23
@@ -20,7 +20,7 @@ ENB = 18
 # Motor 3 (L298N 2)
 IN5 = 16
 IN6 = 20
-ENC = 13
+ENC = 19
 
 # Motor 4 (L298N 2)
 IN7 = 8
