@@ -18,8 +18,8 @@ IN4 = 24
 ENB = 18
 
 # Motor 3 (L298N 2)
-IN5 = 16
-IN6 = 20
+IN5 = 20
+IN6 = 22
 ENC = 19
 
 # Motor 4 (L298N 2)
