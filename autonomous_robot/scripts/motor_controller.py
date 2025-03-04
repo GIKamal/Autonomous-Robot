@@ -9,22 +9,22 @@ GPIO.setwarnings(False)
 
 # Motor 1 (L298N 1)
 IN1 = 17
-IN2 = 18
-ENA = 22
+IN2 = 27
+ENA = 19
 
 # Motor 2 (L298N 1)
 IN3 = 23
 IN4 = 24
-ENB = 25
+ENB = 18
 
 # Motor 3 (L298N 2)
-IN5 = 5
-IN6 = 6
+IN5 = 16
+IN6 = 20
 ENC = 13
 
 # Motor 4 (L298N 2)
-IN7 = 19
-IN8 = 26
+IN7 = 8
+IN8 = 7
 END = 12
 
 # Set up GPIO pins
@@ -54,12 +54,15 @@ def set_motor_speed(motor, speed):
     else:
         return
 
-    if speed > 0:
+    if speed > 0: # Forward
         GPIO.output(in1, GPIO.HIGH)
         GPIO.output(in2, GPIO.LOW)
-    else:
+    elif speed < 0: # Backward
         GPIO.output(in1, GPIO.LOW)
         GPIO.output(in2, GPIO.HIGH)
+    else: # Stop
+        GPIO.output(in1, GPIO.LOW)
+        GPIO.output(in2, GPIO.LOW)
     pwm.ChangeDutyCycle(abs(speed))
 
 def cmd_vel_callback(msg):
