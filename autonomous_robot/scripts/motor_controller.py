@@ -1,101 +1,155 @@
 #!/usr/bin/env python3
-import rospy # type: ignore
-from geometry_msgs.msg import Twist # type: ignore
-import RPi.GPIO as GPIO # type: ignore
 
-# GPIO Pin Setup
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
+import rospy
+from geometry_msgs.msg import Twist
+import RPi.GPIO as GPIO
 
-# Motor 1 (L298N 1)
+# Pin Definitions
+#front_right
 IN1 = 17
 IN2 = 27
 ENA = 13
 
-# Motor 2 (L298N 1)
+#front_left
 IN3 = 23
 IN4 = 24
 ENB = 18
 
-# Motor 3 (L298N 2)
+#back_left
 IN5 = 20
-IN6 = 22
+IN6 = 21
 ENC = 19
 
-# Motor 4 (L298N 2)
+#back_right
 IN7 = 8
 IN8 = 7
 END = 12
 
-# Set up GPIO pins
-GPIO.setup([IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8], GPIO.OUT)
-GPIO.setup([ENA, ENB, ENC, END], GPIO.OUT)
+# Setup GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(IN1, GPIO.OUT)
+GPIO.setup(IN2, GPIO.OUT)
+GPIO.setup(ENA, GPIO.OUT)
+
+GPIO.setup(IN3, GPIO.OUT)
+GPIO.setup(IN4, GPIO.OUT)
+GPIO.setup(ENB, GPIO.OUT)
+
+GPIO.setup(IN5, GPIO.OUT)
+GPIO.setup(IN6, GPIO.OUT)
+GPIO.setup(ENC, GPIO.OUT)
+
+GPIO.setup(IN7, GPIO.OUT)
+GPIO.setup(IN8, GPIO.OUT)
+GPIO.setup(END, GPIO.OUT)
 
 # PWM Setup
-pwm_a = GPIO.PWM(ENA, 1000)  # 1000 Hz frequency
-pwm_b = GPIO.PWM(ENB, 1000)
-pwm_c = GPIO.PWM(ENC, 1000)
-pwm_d = GPIO.PWM(END, 1000)
+pwm_a = GPIO.PWM(ENA, 100)
+pwm_b = GPIO.PWM(ENB, 100)
+pwm_c = GPIO.PWM(ENC, 100)
+pwm_d = GPIO.PWM(END, 100)
+
 pwm_a.start(0)
 pwm_b.start(0)
 pwm_c.start(0)
 pwm_d.start(0)
 
-def set_motor_speed(motor, speed):
-    """Set speed and direction for a motor."""
-    if motor == 1:
-        in1, in2, pwm = IN1, IN2, pwm_a
-    elif motor == 2:
-        in1, in2, pwm = IN3, IN4, pwm_b
-    elif motor == 3:
-        in1, in2, pwm = IN5, IN6, pwm_c
-    elif motor == 4:
-        in1, in2, pwm = IN7, IN8, pwm_d
+def set_motor_speed(pwm, speed):
+    pwm.ChangeDutyCycle(speed)
+
+def stop_motors():
+    GPIO.output(IN1, GPIO.LOW)
+    GPIO.output(IN2, GPIO.LOW)
+    GPIO.output(IN3, GPIO.LOW)
+    GPIO.output(IN4, GPIO.LOW)
+    GPIO.output(IN5, GPIO.LOW)
+    GPIO.output(IN6, GPIO.LOW)
+    GPIO.output(IN7, GPIO.LOW)
+    GPIO.output(IN8, GPIO.LOW)
+    set_motor_speed(pwm_a, 0)
+    set_motor_speed(pwm_b, 0)
+    set_motor_speed(pwm_c, 0)
+    set_motor_speed(pwm_d, 0)
+
+def move_forward():
+    GPIO.output(IN1, GPIO.HIGH)
+    GPIO.output(IN2, GPIO.LOW)
+    GPIO.output(IN3, GPIO.HIGH)
+    GPIO.output(IN4, GPIO.LOW)
+    GPIO.output(IN5, GPIO.HIGH)
+    GPIO.output(IN6, GPIO.LOW)
+    GPIO.output(IN7, GPIO.HIGH)
+    GPIO.output(IN8, GPIO.LOW)
+    set_motor_speed(pwm_a, 50)
+    set_motor_speed(pwm_b, 50)
+    set_motor_speed(pwm_c, 50)
+    set_motor_speed(pwm_d, 50)
+
+def move_backward():
+    GPIO.output(IN1, GPIO.LOW)
+    GPIO.output(IN2, GPIO.HIGH)
+    GPIO.output(IN3, GPIO.LOW)
+    GPIO.output(IN4, GPIO.HIGH)
+    GPIO.output(IN5, GPIO.LOW)
+    GPIO.output(IN6, GPIO.HIGH)
+    GPIO.output(IN7, GPIO.LOW)
+    GPIO.output(IN8, GPIO.HIGH)
+    set_motor_speed(pwm_a, 50)
+    set_motor_speed(pwm_b, 50)
+    set_motor_speed(pwm_c, 50)
+    set_motor_speed(pwm_d, 50)
+
+def turn_right():
+    GPIO.output(IN1, GPIO.LOW)
+    GPIO.output(IN2, GPIO.HIGH)
+    GPIO.output(IN3, GPIO.HIGH)
+    GPIO.output(IN4, GPIO.LOW)
+    GPIO.output(IN5, GPIO.HIGH)
+    GPIO.output(IN6, GPIO.LOW)
+    GPIO.output(IN7, GPIO.LOW)
+    GPIO.output(IN8, GPIO.HIGH)
+    set_motor_speed(pwm_a, 80)
+    set_motor_speed(pwm_b, 80)
+    set_motor_speed(pwm_c, 80)
+    set_motor_speed(pwm_d, 80)
+
+def turn_left():
+    GPIO.output(IN1, GPIO.HIGH)
+    GPIO.output(IN2, GPIO.LOW)
+    GPIO.output(IN3, GPIO.LOW)
+    GPIO.output(IN4, GPIO.HIGH)
+    GPIO.output(IN5, GPIO.LOW)
+    GPIO.output(IN6, GPIO.HIGH)
+    GPIO.output(IN7, GPIO.HIGH)
+    GPIO.output(IN8, GPIO.LOW)
+    set_motor_speed(pwm_a, 80)
+    set_motor_speed(pwm_b, 80)
+    set_motor_speed(pwm_c, 80)
+    set_motor_speed(pwm_d, 80)
+
+def callback(data):
+    linear_x = data.linear.x
+    angular_z = data.angular.z
+
+    if linear_x > 0:
+        move_forward()
+    elif linear_x < 0:
+        move_backward()
+    elif angular_z < 0:
+        turn_right()
+    elif angular_z > 0:
+        turn_left()
     else:
-        return
+        stop_motors()
 
-    if speed > 0: # Forward
-        GPIO.output(in1, GPIO.HIGH)
-        GPIO.output(in2, GPIO.LOW)
-    elif speed < 0: # Backward
-        GPIO.output(in1, GPIO.LOW)
-        GPIO.output(in2, GPIO.HIGH)
-    else: # Stop
-        GPIO.output(in1, GPIO.LOW)
-        GPIO.output(in2, GPIO.LOW)
-    pwm.ChangeDutyCycle(abs(speed))
-
-def cmd_vel_callback(msg):
-    """Convert Twist message to motor speeds."""
-    linear_x = msg.linear.x  # Forward/backward velocity
-    angular_z = msg.angular.z  # Rotational velocity
-
-    # Adjust these scaling factors as needed
-    max_speed = 100  # Maximum PWM duty cycle (0-100)
-    speed_scaling = 50  # Scaling factor for linear velocity
-    turn_scaling = 30  # Scaling factor for angular velocity
-
-    # Calculate motor speeds
-    left_speed = (linear_x * speed_scaling) - (angular_z * turn_scaling)
-    right_speed = (linear_x * speed_scaling) + (angular_z * turn_scaling)
-
-    # Limit speeds to the maximum value
-    left_speed = max(min(left_speed, max_speed), -max_speed)
-    right_speed = max(min(right_speed, max_speed), -max_speed)
-
-    # Set motor speeds
-    set_motor_speed(1, left_speed)  # Left front motor
-    set_motor_speed(2, right_speed)  # Right front motor
-    set_motor_speed(3, left_speed)  # Left rear motor
-    set_motor_speed(4, right_speed)  # Right rear motor
-
-def motor_control_node():
-    rospy.init_node('motor_control_node', anonymous=True)
-    rospy.Subscriber('/cmd_vel', Twist, cmd_vel_callback)
+def listener():
+    rospy.init_node('motor_control', anonymous=True)
+    rospy.Subscriber("/cmd_vel", Twist, callback)
     rospy.spin()
 
 if __name__ == '__main__':
     try:
-        motor_control_node()
+        listener()
     except rospy.ROSInterruptException:
+        stop_motors()
         GPIO.cleanup()
