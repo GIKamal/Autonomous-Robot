@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-import rospy
-from geometry_msgs.msg import Twist
-import RPi.GPIO as GPIO
+import rospy # type: ignore
+from geometry_msgs.msg import Twist # type: ignore
+import RPi.GPIO as GPIO # type: ignore
 
 # Pin Definitions
 #front_right
