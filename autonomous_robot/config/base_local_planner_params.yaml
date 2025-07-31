@@ -1,9 +1,0 @@
-TrajectoryPlannerROS:
-  max_vel_x: 0.8 #max forward speed m/s
-  min_vel_x: 0.5 #min forward speed m/s
-  max_vel_theta: 1.0 #max angular speed rad/s
-  min_in_place_vel_theta: 0.4
-  acc_lim_theta: 2.2 #acceleration limits
-  acc_lim_x: 3 #angular tolrance
-  acc_lim_y: 2 #position tolerance
-  holonomic_robot: false #set to true if robot is omnidirectional
